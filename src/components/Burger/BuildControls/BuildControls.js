@@ -1,6 +1,7 @@
 import React from 'react';
 import clases from './BuildControls.css';
 import BuildControl from './BuildControl/BuildControl';
+import Button from '../../UI/Button/Button';
 
 const controls = [
   { label: 'Salad', type: 'salad' },
@@ -25,7 +26,7 @@ const buildControls = (props) => {
         Current price: ${props.price.toFixed(2)}
       </div>
       <div>
-        <button className={clases.OrderButton} disabled={!props.purchasable}>Purchase</button>
+        <Button btnType={'OrderButton'} disabled={props.purchasable} clicked={props.clickPurchase}>Purchase</Button>
       </div>
       {allControls}
     </div>    

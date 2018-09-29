@@ -71,7 +71,8 @@ class BurgerBuilder extends Component {
     }
     axios.post('/order/', order)
       .then( responce => {
-        this.setState({ loading: false, purchasing: false })
+        this.setState({ loading: false, purchasing: false });
+        this.props.history.push('/checkout');
       } )
       .catch( error => {
         this.setState({ loading: false, purchasing: false })     

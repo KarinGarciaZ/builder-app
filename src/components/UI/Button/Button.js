@@ -2,7 +2,6 @@ import React from 'react';
 import cssClasses from './Button.css';
 
 const button = (props) => {
-  console.log('props: ', props);
   return <button 
       className={[cssClasses.Button, cssClasses[props.btnType]].join(' ')}       
       onClick={props.clicked}      

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Aux from '../../../hoc/Aux';
-import classes from './OrderSummary.css';
+import Button from '../../UI/Button/Button';
 
 class OrderSummary extends Component {
   render () {
@@ -17,8 +17,8 @@ class OrderSummary extends Component {
           {ingredientSummary}
         </ul>      
         <p><strong>Total price: ${this.props.price.toFixed(2)}</strong></p>
-        <button className={classes.CancelButton} onClick={this.props.cancelPurchase}>Cancel</button>
-        <button className={classes.SuccessButton} onClick={this.props.continuePurchase}>Continue</button>
+        <Button btnType="CancelButton"  clicked={this.props.cancelPurchase} disabled>Cancel</Button>
+        <Button btnType="SuccessButton" clicked={this.props.continuePurchase} disabled>Continue</Button>
       </Aux>
     )
   }

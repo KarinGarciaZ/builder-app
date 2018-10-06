@@ -13,7 +13,6 @@ class ContactData extends Component {
   }
 
   componentDidMount() {
-    console.log('this.props: ', this.props);
     this.setState({ 
       ingredients: this.props.ingredients, 
       total_price: this.props.total       

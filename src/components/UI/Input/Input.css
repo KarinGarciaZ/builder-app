@@ -23,5 +23,15 @@
 
 .InputElement:focus {
   outline: none;
-  background-color: #ccc;
+  background-color: #eee;
+}
+
+.Invalid {
+  border: 1px solid red;
+  background-color: rgb(250, 212, 208);
+}
+
+.Valid {
+  border: 1px solid rgb(35, 184, 6);
+  background-color: rgb(208, 250, 215);
 }

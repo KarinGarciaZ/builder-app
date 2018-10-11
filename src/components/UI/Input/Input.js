@@ -3,16 +3,22 @@ import classes from './Input.css';
 
 const input = ( props ) => {
   let imputElement = null;
+  let inputClasses = [ classes.InputElement ]
+
+  if ( !props.valid && props.shouldValidate && props.touched )
+    inputClasses.push(classes.Invalid);
+  if ( props.valid && props.shouldValidate && props.touched ) 
+    inputClasses.push(classes.Valid);
 
   switch( props.inputtype ) {
     case 'input':
-      imputElement = <input className={ classes.InputElement } { ...props.elementConfig } value={ props.value } />
+      imputElement = <input className={ inputClasses.join(' ') } { ...props.elementConfig } value={ props.value } onChange={props.changed}/>
       break;
     case 'textarea':
-      imputElement = <textarea className={ classes.InputElement } { ...props.elementConfig } value={ props.value } />
+      imputElement = <textarea className={ inputClasses.join(' ') } { ...props.elementConfig } value={ props.value } onChange={props.changed}/>
       break;
     default:
-      imputElement = <input className={ classes.InputElement } { ...props.elementConfig } value={ props.value } />
+      imputElement = <input className={ inputClasses.join(' ') } { ...props.elementConfig } value={ props.value } onChange={props.changed}/>
   }
 
   return (

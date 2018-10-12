@@ -16,7 +16,7 @@ class ContactData extends Component {
         value: '',
         elementConfig: {
           type: 'text',
-          placeholder: 'Your Name'
+          placeholder: 'Name'
         },
         validation: {
           required: true,
@@ -31,7 +31,7 @@ class ContactData extends Component {
         value: '',
         elementConfig: {
           type: 'text',
-          placeholder: 'Your address'
+          placeholder: 'Address'
         },
         validation: {
           required: true,
@@ -47,7 +47,7 @@ class ContactData extends Component {
         touched: false,
         elementConfig: {
           type: 'email',
-          placeholder: 'Your mail'
+          placeholder: 'Email'
         }, 
         validation: {
           mailValidation: true,
@@ -94,6 +94,7 @@ class ContactData extends Component {
 
   checkValidity(value, rules) {
     let isValid = [];
+    let regexEmail= new RegExp(/^([\w\.-]+)@([a-z\d-]+).([a-z]{2,8})(\.[a-z]{2,8})?$/, 'gi');
 
     if( rules.required )
       isValid.push(value.trim() !== '');
@@ -104,17 +105,8 @@ class ContactData extends Component {
     if( rules.maxLength )
       isValid.push(value.trim().length <= rules.maxLength);
 
-    if( rules.mailValidation ) 
-      if ( value.includes('@') ) {
-        let arrMail = value.split('@')
-        if ( arrMail.length <= 2 ) {
-          if ( arrMail[0].length > 0 && arrMail[1].length > 2 ) {
-            if ( arrMail[1].includes('.') )
-              isValid.push(true); 
-            else isValid.push(false);
-          } else isValid.push(false);    
-        } else isValid.push(false);
-      } else isValid.push(false);
+    if( rules.mailValidation )
+      isValid.push(regexEmail.test(value));
 
     for( let bool of isValid )
       if ( !bool ) return false;
@@ -133,7 +125,8 @@ class ContactData extends Component {
   }
 
   render () {
-    
+    let buttonDisabled = true;
+    let classButton = 'SuccessButton';
     let formElementArray = [];
     for ( let key in this.state.customerInfo ) {
       formElementArray.push( {
@@ -141,6 +134,12 @@ class ContactData extends Component {
         config: this.state.customerInfo[key]
       })
     }
+
+    for( let bool of formElementArray )
+      if ( !bool.config.valid ) {
+        buttonDisabled = false;
+        classButton = null;
+      }
 
     let form = (<form onSubmit={this.makeOrder}>      
       {formElementArray.map( formElement => {
@@ -155,7 +154,7 @@ class ContactData extends Component {
           touched={formElement.config.touched}
           />
       })}
-      <Button btnType="SuccessButton" disabled >Order</Button>
+      <Button btnType={classButton} disabled={buttonDisabled} >Order</Button>
     </form>);
 
     if( this.state.loading )

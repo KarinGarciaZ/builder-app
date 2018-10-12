@@ -28,10 +28,27 @@
 
 .Invalid {
   border: 1px solid red;
-  background-color: rgb(250, 212, 208);
+  background-color: rgba(250, 212, 208, 0.849);
+}
+
+.Invalid:focus {
+  background-color: rgba(250, 212, 208, 0.301);
 }
 
 .Valid {
   border: 1px solid rgb(35, 184, 6);
-  background-color: rgb(208, 250, 215);
+  background-color: rgba(208, 250, 215, 0.849);
+}
+
+.Valid:focus {
+  background-color: rgba(208, 250, 215, 0.301);
+}
+
+.InputError {
+  color: rgb(253, 186, 186);
+  background-color: rgba(247, 220, 220, 0.527);
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 98%;
+  margin-left: 1%;
 }

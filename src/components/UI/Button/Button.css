@@ -7,13 +7,19 @@
   padding: 10px 20px;
 }
 
+.Button:disabled{
+  background-color: rgb(162, 179, 164);
+  border: 1px solid #899e84;
+  color: #fcfcfc;
+  cursor: not-allowed;
+}
+
 .CancelButton {
   background-color: rgb(218, 100, 53);
   border: 1px solid #722603;
   color: #e6bf56;
   box-shadow: 2px 2px 2px #966909;
 }
-
 
 .CancelButton:hover, .OrderButton:active {
   background-color: rgb(247, 204, 187);

@@ -4,9 +4,12 @@ import classes from './Input.css';
 const input = ( props ) => {
   let imputElement = null;
   let inputClasses = [ classes.InputElement ]
+  let inputError = null;
 
-  if ( !props.valid && props.shouldValidate && props.touched )
+  if ( !props.valid && props.shouldValidate && props.touched ){
+    inputError = (<p className={classes.InputError}>Please enter a valid {props.elementConfig.placeholder}</p>)
     inputClasses.push(classes.Invalid);
+  }
   if ( props.valid && props.shouldValidate && props.touched ) 
     inputClasses.push(classes.Valid);
 
@@ -25,6 +28,7 @@ const input = ( props ) => {
     <div className={classes.Input}>
       <label className={classes.Label}>{props.label}</label>
       {imputElement}
+      {inputError}
     </div>
   );
 
